@@ -242,6 +242,7 @@ const styles = StyleSheet.create({
   },
   tabRow: {
     flexDirection: 'row',
+    justifyContent: 'center',
     marginBottom: 8,
     gap: 24,
   },
