@@ -55,13 +55,13 @@ export default function FriendsScreen() {
         {/* My Friends */}
         <View style={styles.friendsHeader}>
           <Text style={styles.sectionTitle}>My Friends</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push('/add-friends')}>
             <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.friendsScroll}>
           {FRIENDS.map((friend) => (
-            <TouchableOpacity key={friend.id} style={styles.friendItem} activeOpacity={0.8}>
+            <TouchableOpacity key={friend.id} style={styles.friendItem} activeOpacity={0.8} onPress={() => router.push('/friend-profile')}>
               <Image source={{ uri: friend.avatar }} style={styles.friendAvatar} contentFit="cover" />
               <Text style={styles.friendName}>{friend.name}</Text>
             </TouchableOpacity>
@@ -71,7 +71,7 @@ export default function FriendsScreen() {
         {/* Friends Feed */}
         <Text style={[styles.sectionTitle, { marginTop: 8 }]}>Friends New Feed</Text>
         {FEED_EVENTS.map((event) => (
-          <TouchableOpacity key={event.id} style={styles.feedCard} activeOpacity={0.9}>
+          <TouchableOpacity key={event.id} style={styles.feedCard} activeOpacity={0.9} onPress={() => router.push('/event-details')}>
             <View style={styles.feedImages}>
               <Image source={{ uri: event.imageMain }} style={styles.feedImageMain} contentFit="cover" />
               <Image source={{ uri: event.imageSecondary }} style={styles.feedImageSecondary} contentFit="cover" />

@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 const TABS = ['Near Me', 'My Events', 'Friends'] as const;
@@ -18,7 +18,7 @@ export default function HiddleHeader({ activeTab }: { activeTab: HiddleTab }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.avatarWrap}>
+        <TouchableOpacity style={styles.avatarWrap} onPress={() => router.push('/profile')}>
           <Image
             source={{ uri: 'https://i.pravatar.cc/80?img=12' }}
             style={styles.avatar}
@@ -29,9 +29,14 @@ export default function HiddleHeader({ activeTab }: { activeTab: HiddleTab }) {
 
         <Text style={styles.logo}>Hiddle<Text style={styles.logoDot}>•</Text></Text>
 
-        <TouchableOpacity>
-          <Feather name="more-vertical" size={22} color="#fff" />
-        </TouchableOpacity>
+        <View style={styles.headerRight}>
+          <TouchableOpacity onPress={() => router.push('/search')}>
+            <Ionicons name="search-outline" size={22} color="#fff" />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push('/settings')}>
+            <Feather name="more-vertical" size={22} color="#fff" />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.tabRow}>
@@ -78,6 +83,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: '#06093B',
   },
+  headerRight: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   logo: { fontSize: 22, fontWeight: '700', color: '#fff', letterSpacing: 0.5 },
   logoDot: { color: '#F5C518' },
   tabRow: {
